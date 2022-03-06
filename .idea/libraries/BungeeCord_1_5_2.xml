@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="BungeeCord-1.5.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/mc plugin apis/1.5.2/BungeeCord-1.5.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

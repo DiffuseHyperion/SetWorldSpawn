@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SetWorldSpawn:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SetWorldSpawn_jar</output-path>
+    <root id="archive" name="SetWorldSpawn.jar">
+      <element id="module-output" name="SetWorldSpawn" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/tk/yjservers/plugin.yml" />
+    </root>
+  </artifact>
+</component>

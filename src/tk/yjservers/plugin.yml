@@ -1,0 +1,13 @@
+name: SetWorldSpawn
+version: 1.0.0
+main: tk.yjservers.SetWorldSpawnMain
+description: A recreation of /setworldspawn for minecraft 1.5.2.
+commands:
+  setworldspawn:
+    description: A recreation of /setworldspawn.
+    permission: minecraft.command.setworldspawn
+    usage: Wrong usage! Do /setworldspawn (x) (y) (z), use '~' to subsitute it as your location.
+permissions:
+  minecraft.command.setworldspawn:
+    description: Permission for /setworldspawn.
+    default: op
