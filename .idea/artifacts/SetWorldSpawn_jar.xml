@@ -4,6 +4,7 @@
     <root id="archive" name="SetWorldSpawn.jar">
       <element id="module-output" name="SetWorldSpawn" />
       <element id="file-copy" path="$PROJECT_DIR$/src/tk/yjservers/plugin.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/tk/yjservers/config.yml" />
     </root>
   </artifact>
 </component>
