@@ -21,7 +21,7 @@ public class setworldspawn implements CommandExecutor {
                 for (String s : args) {
                     Matcher m = pa.matcher(s);
                     if (m.matches()) {
-                        p.sendMessage(ChatColor.RED + "Expected integer");
+                        p.sendMessage(ChatColor.RED + "Unexpected character found! You can only use numbers, or tildes.");
                         return true;
                     }
                 }
@@ -52,19 +52,19 @@ public class setworldspawn implements CommandExecutor {
                         z1 = (p).getLocation().getBlockZ();
                         break;
                     default:
-                        p.sendMessage(ChatColor.RED + "Incomplete (expected 3 coordinates)");
+                        p.sendMessage(ChatColor.RED + "Not enough arguments! Either enter 3 integers or no arguments to use your location.");
                         return true;
                 }
                 if (p.getWorld().setSpawnLocation(x1, y1, z1)) {
                     p.sendMessage("Set this world spawn point to " + x1 + ", " + y1 + ", " + z1);
                 } else {
-                    p.sendMessage(ChatColor.RED + "Something went wrong");
+                    p.sendMessage(ChatColor.RED + "Something went wrong while setting the spawn location, check the console for potential errors.");
                 }
             } else {
-                p.sendMessage(ChatColor.RED + "Invalid dimension");
+                p.sendMessage(ChatColor.RED + "You can only use this command in the overworld!");
             }
         } else {
-            sender.sendMessage(ChatColor.RED + "Only executable by player");
+            sender.sendMessage(ChatColor.RED + "This command is only executable by a player!");
         }
         return true;
     }
