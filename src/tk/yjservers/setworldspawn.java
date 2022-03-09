@@ -1,6 +1,8 @@
 package tk.yjservers;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -25,37 +27,41 @@ public class setworldspawn implements CommandExecutor {
                         return true;
                     }
                 }
-                int x1;
-                int y1;
-                int z1;
+                int x;
+                int y;
+                int z;
                 switch (args.length) {
                     case 3:
                         if (Objects.equals(args[0], "~")) {
-                            x1 = (p).getLocation().getBlockX();
+                            x = (p).getLocation().getBlockX();
                         } else {
-                            x1 = Integer.parseInt(args[0]);
+                            x = Integer.parseInt(args[0]);
                         }
                         if (Objects.equals(args[1], "~")) {
-                            y1 = (p).getLocation().getBlockY();
+                            y = (p).getLocation().getBlockY();
                         } else {
-                            y1 = Integer.parseInt(args[1]);
+                            y = Integer.parseInt(args[1]);
                         }
                         if (Objects.equals(args[2], "~")) {
-                            z1 = (p).getLocation().getBlockZ();
+                            z = (p).getLocation().getBlockZ();
                         } else {
-                            z1 = Integer.parseInt(args[2]);
+                            z = Integer.parseInt(args[2]);
                         }
                         break;
                     case 0:
-                        x1 = (p).getLocation().getBlockX();
-                        y1 = (p).getLocation().getBlockY();
-                        z1 = (p).getLocation().getBlockZ();
+                        x = (p).getLocation().getBlockX();
+                        y = (p).getLocation().getBlockY();
+                        z = (p).getLocation().getBlockZ();
                         break;
                     default:
                         p.sendMessage(ChatColor.RED + "Not enough arguments! Either enter 3 integers or no arguments to use your location.");
                         return true;
                 }
-                if (p.getWorld().setSpawnLocation(x1, y1, z1)) {
+                Location loc = new Location(p.getWorld(), x, y, z);
+                int x1 = loc.getBlockX();
+                int y1 = loc.getBlockY();
+                int z1 = loc.getBlockZ();
+                if (p.getWorld().setSpawnLocation(x, y, z)) {
                     p.sendMessage("Set this world spawn point to " + x1 + ", " + y1 + ", " + z1);
                 } else {
                     p.sendMessage(ChatColor.RED + "Something went wrong while setting the spawn location, check the console for potential errors.");
