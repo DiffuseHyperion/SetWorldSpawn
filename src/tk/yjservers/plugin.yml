@@ -1,5 +1,5 @@
 name: SetWorldSpawn
-version: 1.0.0
+version: 1.0.2
 main: tk.yjservers.SetWorldSpawnMain
 description: A recreation of /setworldspawn for minecraft 1.5.2.
 commands:
