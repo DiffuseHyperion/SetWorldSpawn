@@ -16,14 +16,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SetWorldSpawnMain extends JavaPlugin implements Listener {
 
     public static FileConfiguration config;
     public static FileConfiguration dataFileConfig;
     public static File dataFile;
-    public static HashMap<Location, String> spawns = new HashMap<>();
+    public static List<Location> spawns = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -66,7 +67,7 @@ public class SetWorldSpawnMain extends JavaPlugin implements Listener {
     }
 
     private Location getLoc(World w) {
-        for (Location l : spawns.keySet()) {
+        for (Location l : spawns) {
             if (l.getWorld().equals(w)) {
                 return l;
             }
@@ -95,19 +96,19 @@ public class SetWorldSpawnMain extends JavaPlugin implements Listener {
             Bukkit.getLogger().warning("No signs found in data.yml, this may be an error!");
         } else {
             for (String s: dataFileConfig.getKeys(false)) {
-                if (getServer().getWorld(dataFileConfig.getString(s + ".world")) == null) {
+                if (getServer().getWorld(s) == null) {
                     getLogger().severe("Something went wrong while reading data.yml, was it changed manually?");
                     getLogger().severe("Check if there is a section called : " + s + ", by using CTRL+F with your editor.");
                     getLogger().severe("This plugin will now disable itself to prevent further errors.");
-                    getPluginLoader().disablePlugin(getServer().getPluginManager().getPlugin("BungledSigns"));
+                    getPluginLoader().disablePlugin(getServer().getPluginManager().getPlugin("SetWorldSpawn"));
                     return;
                 }
-                World w = getServer().getWorld(dataFileConfig.getString(s + ".world"));
-                int x = dataFileConfig.getInt(s + ".vector.x");
-                int y = dataFileConfig.getInt(s + ".vector.y");
-                int z = dataFileConfig.getInt(s + ".vector.z");
+                World w = getServer().getWorld(s);
+                int x = dataFileConfig.getInt(s + ".x");
+                int y = dataFileConfig.getInt(s + ".y");
+                int z = dataFileConfig.getInt(s + ".z");
 
-                spawns.put(new Location(w, x, y, z), s);
+                spawns.add(new Location(w, x, y, z));
             }
         }
     }

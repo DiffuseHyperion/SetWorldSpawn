@@ -62,29 +62,22 @@ public class setworldspawn implements CommandExecutor {
                 }
 
                 Location loc = new Location(p.getWorld(), x, y, z);
-                String uuid = UUID.randomUUID().toString();
+                String worldname = loc.getWorld().getName();
 
-                if (spawns.containsKey(loc)) {
+                if (spawns.contains(loc)) {
                     p.sendMessage(ChatColor.YELLOW + "There is already a world spawn for this world. Overwriting the previous spawn.");
-                    String uuid1 = spawns.get(loc);
-                    dataFileConfig.set(uuid1 + ".vector.x", loc.getBlockX());
-                    dataFileConfig.set(uuid1 + ".vector.y", loc.getBlockY());
-                    dataFileConfig.set(uuid1 + ".vector.z", loc.getBlockZ());
-                    dataFileConfig.set(uuid1 + ".world", p.getWorld().getName());
                 } else {
-                    dataFileConfig.createSection(uuid);
-                    dataFileConfig.createSection(uuid + ".vector.x");
-                    dataFileConfig.createSection(uuid + ".vector.y");
-                    dataFileConfig.createSection(uuid + ".vector.z");
-                    dataFileConfig.createSection(uuid + ".world");
+                    dataFileConfig.createSection(loc.getWorld().getName());
+                    dataFileConfig.createSection(worldname + ".x");
+                    dataFileConfig.createSection(worldname + ".y");
+                    dataFileConfig.createSection(worldname + ".z");
 
-                    dataFileConfig.set(uuid + ".vector.x", loc.getBlockX());
-                    dataFileConfig.set(uuid + ".vector.y", loc.getBlockY());
-                    dataFileConfig.set(uuid + ".vector.z", loc.getBlockZ());
-                    dataFileConfig.set(uuid + ".world", p.getWorld().getName());
                 }
+                dataFileConfig.set(worldname + ".x", loc.getBlockX());
+                dataFileConfig.set(worldname + ".y", loc.getBlockY());
+                dataFileConfig.set(worldname + ".z", loc.getBlockZ());
 
-                spawns.put(loc, uuid);
+                spawns.add(loc);
                 try {
                     dataFileConfig.save(dataFile);
                     p.sendMessage("Set this world spawn point to " + x + ", " + y + ", " + z);
